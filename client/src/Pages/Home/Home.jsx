@@ -1,6 +1,7 @@
-import './Home.css';
 import Navber from '../../Components/Navber/Navber';
-import Header from '../../Components/Navber/Header/Header';
+import Header from '../../Components/Header/Header';
+import './Home.css';
+
 const Home = () => {
     return (
         <div>

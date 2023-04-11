@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js";
-
-
+import { createError } from "../utils/error.js";
 
 export const register = async (req, res, next) => {
     try {
@@ -29,7 +28,9 @@ export const login = async (req, res, next) => {
         const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password)
         if (!isPasswordCorrect) return next(createError(400, "worng password or username"))
 
-        res.status(200).json(user)
+        const {password, isAdmin, ...other} = user._doc;
+
+        res.status(200).json({...other})
     }
     catch (err) {
         next(err)
